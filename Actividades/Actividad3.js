@@ -25,3 +25,33 @@ else if(resta == (1 || (-2))){
     alert("Ganó el Jugador 2" )
 }
 else{alert("Ganó el Jugador 1")}
+
+//Actividad 3, Ejercicio 3
+var num = prompt("Ingrese un número")
+Number(num) % 2 == 0 ? alert(num + " es divisible entre 2") : alert(num + " no es divisible entre 2")
+
+//Actividad 3, Ejercicio 4
+var num = prompt("Ingrese un número")
+Number(num) % 2 == 0 ? alert(num + " es par") : alert(num + " es impar")
+
+//Actividad 3, Ejercicio 5
+var num = prompt("Ingrese un número")
+Number(num) == 1000 ? alert("Ganaste un premio") : alert(num + " Lo sentimos, sigue participando")
+
+//Actividad 3, Ejercicio 6
+var num1 = prompt("Ingrese un número")
+var num2 = prompt("Ingrese otro número")
+Number(num1) > Number(num2) ? alert("El número mayor es " + num1) : alert("El número mayor es " + num2)
+
+//Actividad 3, Ejercicio 7
+var num1 = prompt("Ingrese un número")
+var num2 = prompt("Ingrese otro número")
+var num3 = prompt("Ingrese otro número")
+var mayor = Number(num1)
+if(mayor <= Number(num2)){
+    mayor = Number(num2)
+}
+if(mayor <= Number(num3)){
+    mayor = Number(num3)
+}
+alert("El número mayor es " + mayor)
