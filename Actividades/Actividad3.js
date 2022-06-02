@@ -1,4 +1,4 @@
-//Actividad 1, Ejercicio 1
+//Actividad 3, Ejercicio 1
 var edad = prompt("Dime tu edad");
 var nombre = prompt("Dime tu nombre");
 
