@@ -1,6 +1,6 @@
 //Actividad 5, Ejercicio 1
 var ar = [1,4,6,10,22,55,46,2,5,0]
-for (var i=0; i<=ar.length;i++){
+for (var i=0; i<ar.length;i++){
     if(ar[i]>3){
         console.log("El numero " + ar[i] + " es mayor a 3")
     }
