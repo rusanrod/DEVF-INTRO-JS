@@ -38,12 +38,9 @@ function esPalindromo(palabra){
 }
 
 //Actividad 7, Ejercicio 4
-function convertC2F(cel){
-    fah = cel*(9/5)+32
-    return fah
-}
-
-function convertF2C(fah){
-    cel=(fah-32)*5/9
-    return cel
+function convertTemperatures(cel,fah){
+    retfah = cel*(9/5)+32
+    retcel=(fah-32)*5/9
+    console.log(cel + "°C son: " + retfah + "°F")
+    console.log(fah + "°F son: " + retcel + "°C")
 }
