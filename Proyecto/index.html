@@ -5,16 +5,37 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Cajero Automático</title>
+    <link rel="stylesheet" href="./styles.css">
 </head>
 <body>
     <header class="techo">
         hola 
     </header>
-    <main>
-         xd
+    <main class="whole ATM">
+        <div class="screen ATM">
+            <div class="display ATM"> <!-- here I will display the data -->
+                <span id="mensaje">Hello! Press check key to start.</span>
+                <p><span id="vis_data"></span></p>          
+            </div>
+        </div>
+        <div class="keyboard ATM">
+            <button class="key" onclick="one()">1</button>
+            <button class="key" onclick="two()">2</button>
+            <button class="key" onclick="three()">3</button>
+            <button class="key" onclick="four()">4</button>
+            <button class="key" onclick="five()">5</button>
+            <button class="key" onclick="six()">6</button>
+            <button class="key" onclick="seven()">7</button>
+            <button class="key" onclick="eight()">8</button>
+            <button class="key" onclick="nine()">9</button>
+            <button class="key" onclick="del()">❌</button>
+            <button class="key" onclick="zero()">0</button>
+            <button class="key" onclick="check()">✅</button>
+        </div>
+         <script src="./app.js"></script>
     </main>
     <footer>
-        termina
+        jotos
     </footer>
 </body>
 </html>
