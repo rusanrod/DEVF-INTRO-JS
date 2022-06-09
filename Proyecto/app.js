@@ -153,9 +153,5 @@ function state_machine(state){
             data.textContent = "XXXXXX"
             nState = 1
         break;
-
-
-
-
     }
 }
