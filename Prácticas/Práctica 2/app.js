@@ -32,7 +32,20 @@ function key_pressed(clicked){
             operation = 3
             ready=true
             break
+            case "*":
+                op=clicked
+                num1=Number(data.textContent)
+                operation = 4
+                ready=true
+                break
+
         }
+    }
+    if(clicked=="pi"){
+        clicked="3.14"
+    }
+    if(clicked=="e"){
+        clicked="2.71"
     }
     // console.log(operation)
     inputString += clicked
@@ -64,7 +77,10 @@ function operator(){
     if(operation==3) {
         result=num1 / num2
     }
-    inputString+=String(result)
+    if(operation==4) {
+        result=num1 * num2
+    }
+    inputString+=String(result.toFixed(2))
     data.textContent = inputString
     ready=false
     done=true
