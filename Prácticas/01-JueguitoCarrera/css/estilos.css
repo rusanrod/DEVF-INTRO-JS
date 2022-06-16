@@ -1,0 +1,53 @@
+*{
+	padding: 0;
+	margin: 0;
+}
+
+#pista{
+	margin: 20px auto;
+	position: relative;
+	width: 800px;
+	height: 302px;
+	background-image: url(../img/fondo.jpg);
+}
+
+
+#jugador1{
+	top: 100px;
+	background-color: red;	
+}
+#jugador2{
+	top: 170px; 
+	background-color: blue;	 	
+}
+#jugador3{
+	top: 240px; 
+	background-color: yellow;	 	
+}
+
+.jugador{
+	position: absolute;
+	width: 50px;
+	height: 50px;
+	border-radius: 25px;
+	transition: 0.3s;
+}
+
+#inicio{
+	width: 150px;
+	height: 70px;
+	background-color: red;
+	position: absolute;
+	border-radius: 10px;
+	color: white;
+	font-size: 20pt;
+	text-align: center;
+	font-family: arial;
+	left: 300px;
+	top: 100px;
+	box-shadow: 5px 5px 5px 0px rgba(0,0,0,0.75);
+	transition: transform .2s;
+}
+#inicio:active{
+	transform: scale(.9);
+}

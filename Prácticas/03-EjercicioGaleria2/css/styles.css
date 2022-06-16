@@ -1,0 +1,38 @@
+*{
+	color: white;
+	font-family: Arial;
+	text-align: center;
+}
+body{
+	background-color: black;
+}
+#contenedor{
+	width: 400px;
+	margin: auto;
+	border: 1px solid white;
+	padding: 20px;
+}
+.btn{
+	width: 30px;
+	height: 30px;
+	border: 1px solid white;
+	border-radius: 16px;
+	color: white;
+	float: left;
+	margin: 10px;
+	margin-left: 70px;
+	margin-bottom: 40px;
+	text-align: center;
+	font-size: 18px;
+	cursor: pointer;
+	line-height: 30px;
+  transition: transform .2s;
+  user-select: none;
+}
+.btn:active{
+  transform: scale(.9);
+}
+.btn:hover{
+	color: black;
+	background-color: white;
+}
