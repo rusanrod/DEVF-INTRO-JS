@@ -1,0 +1,44 @@
+.whole{
+    background-color: lightgray;
+    display: flex;
+    flex-flow: column nowrap;
+    justify-content: center;
+}
+.screen{
+    /* border: 1px solid #000; */
+    align-self: center;
+    display: flex;
+    flex-flow: row nowrap ;
+    justify-content: center;
+    align-items: center;
+    width: 20rem;
+    height: 15rem;
+}
+.display{
+    width: 90%;
+    height: 90%;
+    background-color: #000;
+    color: azure;
+    font-size: 2rem;
+    text-align: center;
+    /* border:  5px solid rgb(138, 16, 16); */
+}
+/* #contador{
+    
+
+} */
+
+.keyboard{
+    align-self: center;
+    padding: 1rem;
+    /* border:  5px solid #000; */
+    display: grid;
+    grid-template-columns: repeat(3,1fr);
+    grid-template-rows: repeat(4,1fr);
+}
+.key{
+    width: auto;
+    margin: 5px;
+    font-size: 2rem;
+    border-radius: 6px;
+}
