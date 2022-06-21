@@ -14,7 +14,7 @@ let lat_data = false //allow to click any key from the lateral keyboard
 let btn_input = 0
 let operation = 0 //by default 0:"check balance", 1: "deposit money", 2:"cash withdrawal"
 let clientsStored
-// console.log(data)
+let cancelable = false
 
 // document.addEventListener('DOMContentLoaded',() => {
 //     console.log(cState)
@@ -73,6 +73,13 @@ function logOut(){
     state_machine(nState)
 }
 
+function cancel(){
+    if(cancelable){
+        cState -=1
+        state_machine(cState)
+    }
+}
+
 // btn_left.addEventListener("click", () => {
 //     console.log("click")
 // })
@@ -114,6 +121,7 @@ function state_machine(state){
         case 0: //Start
             dataEditable = false
             lat_data = false
+            cancelable = false 
             cState = 0
             align2center()
             message.textContent = "Hello! Press check key to start."
@@ -126,6 +134,7 @@ function state_machine(state){
             dataEditable = false
             lat_data = true
             cState = 1
+            cancelable = true
             align2start()
             // input = ""
             message.textContent = "Choose your name:"
@@ -139,6 +148,7 @@ function state_machine(state){
             dataEditable = true
             lat_data = false
             cState = 2
+            cancelable = true
             // cliente ? clientID:clientID = input 
             align2center()
             input = ""
@@ -151,6 +161,7 @@ function state_machine(state){
         case 3: // nip validation
             dataEditable = false
             lat_data = false
+            cancelable = false
             cState = 3
             align2center()
             clientNIP = input
@@ -175,6 +186,7 @@ function state_machine(state){
         case 4: //account operations
             dataEditable = false
             lat_data = true
+            cancelable = false
             cState = 4
             align2start()
             message.textContent = "Hello " + cliente.name + "!"
@@ -187,6 +199,7 @@ function state_machine(state){
         case 5: //operation validation 
             dataEditable = false
             lat_data = false
+            cancelable = false
             cState = 5
             operation = btn_input
             console.log(operation)
@@ -207,6 +220,7 @@ function state_machine(state){
                 input = ""
                 dataEditable = true
                 lat_data = false
+                cancelable = true
                 message.textContent = "Type your deposit:"
                 data1.textContent=""
                 data2.textContent = "_"
@@ -218,6 +232,7 @@ function state_machine(state){
                 input = ""
                 dataEditable = true
                 lat_data = false
+                cancelable = true
                 message.textContent = "Type your withdrawal:"
                 data1.textContent=""
                 data2.textContent = "_"
@@ -230,6 +245,7 @@ function state_machine(state){
         case 6: //operation validation
             dataEditable = false
             lat_data = false
+            cancelable = false
             align2center()
             let nuevoSaldo = 0
             operation == 1 ? nuevoSaldo = cliente.saldo + Number(input) : nuevoSaldo = cliente.saldo - Number(input)
@@ -248,6 +264,7 @@ function state_machine(state){
         case 7:
             dataEditable = false
             lat_data = false
+            cancelable = false
             align2center()
             let movement = ""
             operation == 1 ? movement = "Your deposit" : movement = "Your withdrawal"
@@ -262,6 +279,7 @@ function state_machine(state){
         case 20: // wrong nip
             dataEditable = false
             lat_data = false
+            cancelable = false
             align2center()
             cState = 20
             message.textContent = "Wrong NIP"
@@ -275,6 +293,7 @@ function state_machine(state){
             dataEditable = false
             lat_data = false
             cState = 30
+            cancelable = false
             align2center()
             message.textContent = "Error: no puedes tener mas de $990 ni menos de $10"
             data1.textContent = ""
@@ -287,6 +306,7 @@ function state_machine(state){
             // bye bye!
             dataEditable = false
             lat_data = false
+            cancelable = false
             cState = 40
             align2center()
             message.textContent = "Bye bye!"
