@@ -27,6 +27,7 @@ document.addEventListener("DOMContentLoaded", () => {
             //add
         console.log("no hay, pero ahora si")
         localStorage.setItem('clients', JSON.stringify(clients))
+        clientsStored = JSON.parse(localStorage.getItem('clients'))
     }
 
 
@@ -64,6 +65,14 @@ function left_pressed(clicked){
         state_machine(nState)
     }
 }
+
+// function sleep(milliseconds) {
+//     const date = Date.now();
+//     let currentDate = null;
+//     do {
+//       currentDate = Date.now();
+//     } while (currentDate - date < milliseconds);
+// }
 
 function state_machine(state){
     switch(state){
@@ -121,6 +130,8 @@ function state_machine(state){
                     nState = 20 //NIP incorrecto
                 }
             }
+            setTimeout(()=>state_machine(nState),1500)
+            // clearTimeout(time)
         break;
         case 4: //account operations
             dataEditable = false
@@ -133,84 +144,90 @@ function state_machine(state){
             // cliente=undefined
             nState = 5
         break;
-        case 5: //validation 
+        case 5: //operation validation 
             dataEditable = false
             lat_data = false
             cState = 5
             operation = btn_input
+            console.log(operation)
             if(operation == 0){
                 // check balance
-                nState = 6
+                dataEditable = false
+                lat_data = false
+                message.textContent = "Your balance is:"
+                data1.textContent = ""
+                data2.textContent = "$" + cliente.saldo
+                data3.textContent = ""
+                nState = 4
+                setTimeout(()=>state_machine(nState),2500)
             }
             else if (operation == 1){
                 // deposit money
-                nState = 7
+                input = ""
+                dataEditable = true
+                lat_data = false
+                message.textContent = "Type your deposit:"
+                data1.textContent=""
+                data2.textContent = "_"
+                data3.textContent = ""
+                nState = 6
             }
             else{
                 // cash withdrawal
-                nState = 8
+                input = ""
+                dataEditable = true
+                lat_data = false
+                message.textContent = "Type your withdrawal:"
+                data1.textContent=""
+                data2.textContent = "_"
+                data3.textContent = ""
+                nState = 6
             }
 
             break;
 
-        case 6: //check balance
+        case 6: //operation validation
             dataEditable = false
             lat_data = false
-            cState = 6
-            message.textContent = "Your balance is:"
-            data1.textContent = ""
-            data2.textContent = "$" + cliente.saldo
-            data3.textContent = ""
-            nState = 4
-        break;
-        case 7: //deposit money
-            dataEditable = true
-            lat_data = false
-            cState = 7
-            input = ""
-            message.textContent = "Type your deposit:"
-            data1.textContent=""
-            data2.textContent = "_"
-            data3.textContent = ""
-            nState = 9
-        break;
-        case 8: //cash withdrawal
-            dataEditable = false
-            lat_data = false
-            input = ""
-            message.textContent = "Type your withdrawal:"
-            data1.textContent=""
-            data2.textContent = "_"
-            data3.textContent = ""
-            cState = 9
-
-        break;
-
-        case 9: //operation validation
-            dataEditable = false
-            lat_data = false
-            if (operation==2){
-                let nuevoSaldo = cliente.saldo + Number(input)
-                if(nuevoSaldo > 990){
-                    nState = 28 //error
-                }
-                else{
-                    cliente.saldo = nuevoSaldo
-                    clientsStored.push(cliente)
-                    console.log(clientsStored) 
-                    nState = 10 // aun no se
-                }
-                
+            let nuevoSaldo = 0
+            operation == 1 ? nuevoSaldo = cliente.saldo + Number(input) : nuevoSaldo = cliente.saldo - Number(input)
+            if(nuevoSaldo > 990 || nuevoSaldo < 10){
+                nState = 30 //error
             }
+            else{
+                cliente.saldo = nuevoSaldo
+                console.log(clientsStored)
+                localStorage.setItem('clients', JSON.stringify(clientsStored))
+                nState = 7
+            }
+            setTimeout(()=>state_machine(nState),500)
+        break;
+
+        case 7:
+            
         break;
 
         case 20: // wrong nip
-        dataEditable = false
-        lat_data = false
-        cState = 20
-        message.textContent = "Wrong NIP"
-        data2.textContent = "XXXX"
-        nState = 2 //por tiempo deberia pasar al siguiente estado
+            dataEditable = false
+            lat_data = false
+            cState = 20
+            message.textContent = "Wrong NIP"
+            data1.textContent = ""
+            data2.textContent = "XXXX"
+            data3.textContent = ""
+            nState = 2
+            setTimeout(()=>state_machine(nState),2000)
+        break;
+        case 30: // error
+            dataEditable = false
+            lat_data = false
+            cState = 20
+            message.textContent = "Error: no puedes tener mas de $990 ni menos de $10"
+            data1.textContent = ""
+            data2.textContent = "XXXX"
+            data3.textContent = ""
+            nState = 5 
+            setTimeout(()=>state_machine(nState),3000)
         break;
 
     }

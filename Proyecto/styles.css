@@ -37,7 +37,7 @@
     grid-template-rows: repeat(4,1fr);
 }
 .key{
-    width: auto;
+    width: 100px;
     margin: 5px;
     font-size: 2rem;
     border-radius: 6px;
