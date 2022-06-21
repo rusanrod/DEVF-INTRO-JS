@@ -1,14 +1,12 @@
 let inputString = "" //lo que se visualiza en pantalla
 let input = ""        //lo que en realidad esta pasando
 let cState = 0      //current state
-let nState = 1      //next state
-let borrar = false  
+let nState = 1      //next state 
 const message = document.getElementById("mensaje") 
 const data1 = document.getElementById("vis_data1")
 const data2 = document.getElementById("vis_data2")
 const data3 = document.getElementById("vis_data3")
-// const btn_left = document.querySelector("#btn_left")
-let clientID = 0
+const vis_data = document.querySelector("#vis_data")
 let clientNIP = 0   //client NIP from input
 let cliente         //client account
 let dataEditable = false //allow to click any key from the main keyboard
@@ -33,6 +31,13 @@ document.addEventListener("DOMContentLoaded", () => {
 
     
 })
+document.addEventListener('keydown', (event) => {
+    var keyValue = event.key;
+    var codeValue = event.code;
+   
+    console.log("keyValue: " + keyValue);
+    console.log("codeValue: " + codeValue);
+  }, false);
 function key_pressed(clicked){
     if(dataEditable){
         cState == 2 ? inputString += "*" : inputString += clicked
@@ -51,6 +56,20 @@ function check(){
     inputString = ""
     data2.textContent = inputString
     //cState++
+    state_machine(nState)
+}
+
+function logOut(){
+    inputString = "" //lo que se visualiza en pantalla
+    input = ""        //lo que en realidad esta pasando
+    cState = 0      //current state
+    nState = 40      //next state 
+    clientNIP = 0
+    cliente         //client account
+    dataEditable = false //allow to click any key from the main keyboard
+    lat_data = false //allow to click any key from the lateral keyboard
+    btn_input = 0
+    operation = 0    //by default 0:"check balance", 1: "deposit money", 2:"cash withdrawal"
     state_machine(nState)
 }
 
@@ -73,6 +92,22 @@ function left_pressed(clicked){
 //       currentDate = Date.now();
 //     } while (currentDate - date < milliseconds);
 // }
+function align2start(){
+    // console.log(vis_data.children)
+    Array.from(vis_data.children).forEach((child)=>{
+        // console.log(child)
+        child.classList.replace('text-center','text-start')
+
+    })
+}
+function align2center(){
+    // console.log(vis_data.children)
+    Array.from(vis_data.children).forEach((child)=>{
+        // console.log(child)
+        child.classList.replace('text-start','text-center')
+
+    })
+}
 
 function state_machine(state){
     switch(state){
@@ -80,6 +115,7 @@ function state_machine(state){
             dataEditable = false
             lat_data = false
             cState = 0
+            align2center()
             message.textContent = "Hello! Press check key to start."
             data1.textContent = ""
             data2.textContent = "_"
@@ -90,6 +126,7 @@ function state_machine(state){
             dataEditable = false
             lat_data = true
             cState = 1
+            align2start()
             // input = ""
             message.textContent = "Choose your name:"
             // data.textContent = "Ruben Sandoval"
@@ -103,6 +140,7 @@ function state_machine(state){
             lat_data = false
             cState = 2
             // cliente ? clientID:clientID = input 
+            align2center()
             input = ""
             message.textContent = "Type your NIP"
             data1.textContent = ""
@@ -114,6 +152,7 @@ function state_machine(state){
             dataEditable = false
             lat_data = false
             cState = 3
+            align2center()
             clientNIP = input
             input = ""
             message.textContent = "Validating" //cambio por tiempo
@@ -137,6 +176,7 @@ function state_machine(state){
             dataEditable = false
             lat_data = true
             cState = 4
+            align2start()
             message.textContent = "Hello " + cliente.name + "!"
             data1.textContent = "-Check balance"
             data2.textContent = "-Deposit money"
@@ -150,6 +190,7 @@ function state_machine(state){
             cState = 5
             operation = btn_input
             console.log(operation)
+            align2center()
             if(operation == 0){
                 // check balance
                 dataEditable = false
@@ -189,6 +230,7 @@ function state_machine(state){
         case 6: //operation validation
             dataEditable = false
             lat_data = false
+            align2center()
             let nuevoSaldo = 0
             operation == 1 ? nuevoSaldo = cliente.saldo + Number(input) : nuevoSaldo = cliente.saldo - Number(input)
             if(nuevoSaldo > 990 || nuevoSaldo < 10){
@@ -204,12 +246,23 @@ function state_machine(state){
         break;
 
         case 7:
-            
+            dataEditable = false
+            lat_data = false
+            align2center()
+            let movement = ""
+            operation == 1 ? movement = "Your deposit" : movement = "Your withdrawal"
+            message.textContent = ""
+            data1.textContent = `${movement}: ${input}`
+            data2.textContent = ""
+            data3.textContent = `New balance: ${cliente.saldo}`
+            nState = 4
+            setTimeout(()=>state_machine(nState),5000)
         break;
 
         case 20: // wrong nip
             dataEditable = false
             lat_data = false
+            align2center()
             cState = 20
             message.textContent = "Wrong NIP"
             data1.textContent = ""
@@ -221,13 +274,27 @@ function state_machine(state){
         case 30: // error
             dataEditable = false
             lat_data = false
-            cState = 20
+            cState = 30
+            align2center()
             message.textContent = "Error: no puedes tener mas de $990 ni menos de $10"
             data1.textContent = ""
             data2.textContent = "XXXX"
             data3.textContent = ""
             nState = 5 
             setTimeout(()=>state_machine(nState),3000)
+        break;
+        case 40:
+            // bye bye!
+            dataEditable = false
+            lat_data = false
+            cState = 40
+            align2center()
+            message.textContent = "Bye bye!"
+            data1.textContent = ""
+            data2.textContent = ""
+            data3.textContent = ""
+            nState = 0
+            setTimeout(()=>state_machine(nState),1500)
         break;
 
     }
