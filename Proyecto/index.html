@@ -5,6 +5,14 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Cajero Automático</title>
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-0evHe/X+R7YkIZDRvuzKMRqM+OrBnVFBL6DOitfPri4tjfHxaWutUpFmBp4vmVor"
+      crossorigin="anonymous"/>
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.8.3/font/bootstrap-icons.css"/>
     <link rel="stylesheet" href="./styles.css">
 </head>
 <body>
@@ -13,9 +21,23 @@
     </header>
     <main class="whole ATM">
         <div class="screen ATM">
+            <div class="btn btn_left">
+                <button class="key l_btn" id="l1" onclick="left_pressed(this.id)"> </button>
+                <button class="key l_btn" id="l2" onclick="left_pressed(this.id)"> </button>
+                <button class="key l_btn" id="l3" onclick="left_pressed(this.id)"> </button>
+            </div>
             <div class="display ATM"> <!-- here I will display the data -->
                 <span id="mensaje">Hello! Press check key to start.</span>
-                <p><span id="vis_data"></span></p>          
+                <p>
+                    <p class="my-0" id="vis_data1"></p>
+                    <p class="my-0" id="vis_data2"></p>
+                    <p class="my-0" id="vis_data3"></p>
+                </p>          
+            </div>
+            <div class="btn btn_right">
+                <!-- <button class="key l_btn" id="r1"> </button>
+                <button class="key l_btn" id="r2"> </button>
+                <button class="key l_btn" id="r3"> </button> -->
             </div>
         </div>
         <div class="keyboard ATM">
@@ -33,9 +55,10 @@
             <button class="key" onclick="check()">✅</button>
         </div>
          <script src="./app.js"></script>
+         <script src="./cuentas.js"></script>
     </main>
     <footer>
-        jotos
+        
     </footer>
 </body>
 </html>

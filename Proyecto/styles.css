@@ -10,12 +10,12 @@
     display: flex;
     flex-flow: row nowrap ;
     justify-content: center;
-    align-items: center;
-    width: 20rem;
+    align-items: flex-end;
+    width: 40rem;
     height: 15rem;
 }
 .display{
-    width: 90%;
+    width: 60%;
     height: 90%;
     background-color: #000;
     color: azure;
@@ -23,9 +23,9 @@
     text-align: center;
     /* border:  5px solid rgb(138, 16, 16); */
 }
-/* #contador{
-    
 
+/* .btn{
+    width: ;
 } */
 
 .keyboard{
@@ -41,4 +41,19 @@
     margin: 5px;
     font-size: 2rem;
     border-radius: 6px;
+}
+
+.btn{
+    /* border:  5px solid rgb(138, 16, 16); */
+    display: flex;
+    flex-flow: column nowrap;
+    justify-content: flex-end;
+    height: 150px;
+    width: 90px;
+}
+
+.l_btn{
+    /* border:  5px solid rgb(138, 16, 16); */
+    height: 35px;
+    width: 50px;
 }
