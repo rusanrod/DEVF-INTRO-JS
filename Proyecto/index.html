@@ -18,107 +18,97 @@
     <link rel="stylesheet" href="./styles.css" />
   </head>
   <body>
-    <main class="whole ATM">
-      <div class="screen ATM">
-        <div class="btns btn_left mb-3">
-          <button
-            class="key l_btn mb-2"
-            id="l1"
-            onclick="left_pressed(this.id)"
-            data-bs-toggle="tooltip"
-            data-bs-placement="top"
-            data-bs-custom-class="custom-tooltip"
-            title="Option 1."
-          ></button>
-          <button
-            class="key l_btn mb-2"
-            id="l2"
-            onclick="left_pressed(this.id)"
-            data-bs-toggle="tooltip"
-            data-bs-placement="top"
-            data-bs-custom-class="custom-tooltip"
-            title="Option 2."
-          ></button>
-          <button
-            class="key l_btn"
-            id="l3"
-            onclick="left_pressed(this.id)"
-            data-bs-toggle="tooltip"
-            data-bs-placement="top"
-            data-bs-custom-class="custom-tooltip"
-            title="Option 3."
-          ></button>
-        </div>
-        <div class="display ATM">
-          <!-- here I will display the data -->
-          <span id="mensaje">Hello! Press check key to start.</span>
-          <div id="vis_data" class="mt-1">
-            <p class="my-0 text-center" id="vis_data1"></p>
-            <p class="my-0 text-center" id="vis_data2"></p>
-            <p class="my-0 text-center" id="vis_data3"></p>
+    <main>
+        <div class="whole ATM">
+            <div class="title ATM">
+                <div class="txt-cont my-2">Bank ATM</div>
+            </div>
+            <div class="middle">
+                <div class="interface ATM">
+                    <div class="btns btn_left mb-4">
+                      <button class="key l_btn mb-2" id="l1" onclick="left_pressed(this.id)"
+                        data-bs-toggle="tooltip"
+                        data-bs-placement="top"
+                        data-bs-custom-class="custom-tooltip"
+                        title="Option 1."><i class="bi bi-arrow-right text-success"></i></button>
+                      <button class="key l_btn mb-2" id="l2" onclick="left_pressed(this.id)"
+                        data-bs-toggle="tooltip"
+                        data-bs-placement="top"
+                        data-bs-custom-class="custom-tooltip"
+                        title="Option 2."><i class="bi bi-arrow-right text-success"></i></button>
+                      <button class="key l_btn" id="l3" onclick="left_pressed(this.id)"
+                        data-bs-toggle="tooltip"
+                        data-bs-placement="top"
+                        data-bs-custom-class="custom-tooltip"
+                        title="Option 3."><i class="bi bi-arrow-right text-success"></i></button>
+                    </div>
+                    <div class="display ATM">
+                      <!-- here I will display the data -->
+                      <span id="mensaje">Hello! Press check key to start.</span>
+                      <div id="vis_data" class="mt-2">
+                        <p class="my-0 text-center" id="vis_data1"></p>
+                        <p class="my-0 text-center" id="vis_data2"></p>
+                        <p class="my-0 text-center" id="vis_data3"></p>
+                      </div>
+                    </div>
+                    <div class="btns btn_right mb-3">
+                      <button
+                        class="key l_btn r"
+                        id="r1"
+                        onclick="logOut()"
+                        data-bs-toggle="tooltip"
+                        data-bs-placement="top"
+                        data-bs-custom-class="custom-tooltip"
+                        title="Log out."
+                      >
+                        <i class="bi bi-box-arrow-left text-warning"></i>
+                      </button>
+                      <button class="key l_btn r"id="r2" onclick="cancel()" 
+                      data-bs-toggle="tooltip" data-bs-placement="top" 
+                      data-bs-custom-class="custom-tooltip" title="Cancel operation.">
+                        <i class="bi bi-x-circle text-danger"></i>
+                      </button>
+                      <!-- <button class="key l_btn" id="r3"> </button> -->
+                    </div>
+                  </div>
+            </div>
+            
+            <div class="keyboard ATM mb-5">
+              <button class="key" id="1" onclick="key_pressed(this.id)">1</button>
+              <button class="key" id="2" onclick="key_pressed(this.id)">2</button>
+              <button class="key" id="3" onclick="key_pressed(this.id)">3</button>
+              <button class="key" id="4" onclick="key_pressed(this.id)">4</button>
+              <button class="key" id="5" onclick="key_pressed(this.id)">5</button>
+              <button class="key" id="6" onclick="key_pressed(this.id)">6</button>
+              <button class="key" id="7" onclick="key_pressed(this.id)">7</button>
+              <button class="key" id="8" onclick="key_pressed(this.id)">8</button>
+              <button class="key" id="9" onclick="key_pressed(this.id)">9</button>
+              <button
+                class="key"
+                id="del"
+                onclick="del()"
+                data-bs-toggle="tooltip"
+                data-bs-placement="top"
+                data-bs-custom-class="custom-tooltip"
+                title="Delete."
+              >
+                <i class="bi bi-backspace text-danger"></i>
+              </button>
+              <button class="key" id="0" onclick="key_pressed(this.id)">0</button>
+              <button
+                class="key"
+                onclick="check()"
+                data-bs-toggle="tooltip"
+                data-bs-placement="top"
+                data-bs-custom-class="custom-tooltip"
+                title="Check."
+              >
+                <i class="bi bi-check-lg text-success"></i>
+              </button>
+            </div>
+            <script src="./app.js"></script>
+            <script src="./cuentas.js"></script>
           </div>
-        </div>
-        <div class="btns btn_right mb-3">
-          <button
-            class="key l_btn r"
-            id="r1"
-            onclick="logOut()"
-            data-bs-toggle="tooltip"
-            data-bs-placement="top"
-            data-bs-custom-class="custom-tooltip"
-            title="Log out."
-          >
-            <i class="bi bi-box-arrow-left text-warning"></i>
-          </button>
-          <button
-            class="key l_btn r"
-            id="r2"
-            onclick="cancel()"
-            data-bs-toggle="tooltip"
-            data-bs-placement="top"
-            data-bs-custom-class="custom-tooltip"
-            title="Cancel operation."
-          >
-            <i class="bi bi-x-circle text-danger"></i>
-          </button>
-          <!-- <button class="key l_btn" id="r3"> </button> -->
-        </div>
-      </div>
-      <div class="keyboard ATM">
-        <button class="key" id="1" onclick="key_pressed(this.id)">1</button>
-        <button class="key" id="2" onclick="key_pressed(this.id)">2</button>
-        <button class="key" id="3" onclick="key_pressed(this.id)">3</button>
-        <button class="key" id="4" onclick="key_pressed(this.id)">4</button>
-        <button class="key" id="5" onclick="key_pressed(this.id)">5</button>
-        <button class="key" id="6" onclick="key_pressed(this.id)">6</button>
-        <button class="key" id="7" onclick="key_pressed(this.id)">7</button>
-        <button class="key" id="8" onclick="key_pressed(this.id)">8</button>
-        <button class="key" id="9" onclick="key_pressed(this.id)">9</button>
-        <button
-          class="key"
-          id="del"
-          onclick="del()"
-          data-bs-toggle="tooltip"
-          data-bs-placement="top"
-          data-bs-custom-class="custom-tooltip"
-          title="Delete."
-        >
-          <i class="bi bi-backspace text-danger"></i>
-        </button>
-        <button class="key" id="0" onclick="key_pressed(this.id)">0</button>
-        <button
-          class="key"
-          onclick="check()"
-          data-bs-toggle="tooltip"
-          data-bs-placement="top"
-          data-bs-custom-class="custom-tooltip"
-          title="Check."
-        >
-          <i class="bi bi-check-lg text-success"></i>
-        </button>
-      </div>
-      <script src="./app.js"></script>
-      <script src="./cuentas.js"></script>
-    </main>
+    <!-- <footer><div class="lds-ellipsis"><div></div><div></div><div></div><div></div></div></footer> -->
   </body>
 </html>

@@ -107,6 +107,21 @@ function align2center(){
     })
 }
 
+function loadingAnimation(){
+    data2.textContent = ""
+    const carga = document.createElement("div")
+    carga.className = "lds-ellipsis"
+    carga.innerHTML = "<div></div><div></div><div></div><div></div>"
+    data2.appendChild(carga)
+}
+
+function errorAnimation(){
+    data2.textContent = ""
+    const error = document.createElement("div")
+    error.className = "blink_me"
+    error.innerHTML = `<i class="bi bi-x-circle"></i>`
+    data2.appendChild(error)
+}
 function state_machine(state){
     switch(state){
         case 0: //Start
@@ -157,7 +172,8 @@ function state_machine(state){
             input = ""
             message.textContent = "Validating" //cambio por tiempo
             data1.textContent = ""
-            data2.textContent = "_"
+            loadingAnimation()
+            // data2.textContent = "_"
             data3.textContent = ""
             cliente = clientsStored[btn_input]
             if(cliente){    //ID correcto
@@ -269,7 +285,7 @@ function state_machine(state){
             cState = 20
             message.textContent = "Wrong NIP"
             data1.textContent = ""
-            data2.textContent = "XXXX"
+            errorAnimation()
             data3.textContent = ""
             nState = 2
             setTimeout(()=>state_machine(nState),2000)
@@ -282,8 +298,9 @@ function state_machine(state){
             align2center()
             message.textContent = "Error: Your balance can't be either higher than $990 or lower than $10"
             data1.textContent = ""
-            data2.textContent = "XXXX"
             data3.textContent = ""
+            errorAnimation()
+
             nState = 5 
             setTimeout(()=>state_machine(nState),3000)
         break;
@@ -295,8 +312,8 @@ function state_machine(state){
             align2center()
             message.textContent = "See you later!"
             data1.textContent = ""
-            data2.textContent = ""
             data3.textContent = ""
+            loadingAnimation()
             nState = 0
             setTimeout(()=>state_machine(nState),1500)
         break;
