@@ -1,7 +1,7 @@
-let inputString = "" //lo que se visualiza en pantalla
-let input = ""        //lo que en realidad esta pasando
-let cState = 0      //current state
-let nState = 1      //next state 
+let inputString = ""    //lo que se visualiza en pantalla
+let input = ""          //lo que en realidad esta pasando
+let cState = 0          //current state
+let nState = 1          //next state 
 const message = document.getElementById("mensaje") 
 const data1 = document.getElementById("vis_data1")
 const data2 = document.getElementById("vis_data2")
@@ -55,7 +55,6 @@ function del(){
 function check(){
     inputString = ""
     data2.textContent = inputString
-    //cState++
     state_machine(nState)
 }
 
@@ -77,12 +76,11 @@ function cancel(){
     if(cancelable){
         cState -=1
         state_machine(cState)
+        input=""
+        inputString=""
     }
 }
 
-// btn_left.addEventListener("click", () => {
-//     console.log("click")
-// })
 function left_pressed(clicked){
     if(lat_data){
         let arr = ["l1", "l2", "l3"]
@@ -92,13 +90,6 @@ function left_pressed(clicked){
     }
 }
 
-// function sleep(milliseconds) {
-//     const date = Date.now();
-//     let currentDate = null;
-//     do {
-//       currentDate = Date.now();
-//     } while (currentDate - date < milliseconds);
-// }
 function align2start(){
     // console.log(vis_data.children)
     Array.from(vis_data.children).forEach((child)=>{
@@ -138,7 +129,6 @@ function state_machine(state){
             align2start()
             // input = ""
             message.textContent = "Choose your name:"
-            // data.textContent = "Ruben Sandoval"
             data1.textContent = `-${clientsStored[0].name}`
             data2.textContent = `-${clientsStored[1].name} `
             data3.textContent = `-${clientsStored[2].name} `
@@ -149,7 +139,6 @@ function state_machine(state){
             lat_data = false
             cState = 2
             cancelable = true
-            // cliente ? clientID:clientID = input 
             align2center()
             input = ""
             message.textContent = "Type your NIP"
@@ -158,7 +147,7 @@ function state_machine(state){
             data3.textContent = ""
             nState = 3
         break;
-        case 3: // nip validation
+        case 3: // Nip validation
             dataEditable = false
             lat_data = false
             cancelable = false
@@ -170,7 +159,6 @@ function state_machine(state){
             data1.textContent = ""
             data2.textContent = "_"
             data3.textContent = ""
-            // cliente=(clients.filter(item=>item.ID==clientID))[0]
             cliente = clientsStored[btn_input]
             if(cliente){    //ID correcto
                 if(cliente.NIP == clientNIP){ 
@@ -181,9 +169,8 @@ function state_machine(state){
                 }
             }
             setTimeout(()=>state_machine(nState),1500)
-            // clearTimeout(time)
         break;
-        case 4: //account operations
+        case 4: // Account operations
             dataEditable = false
             lat_data = true
             cancelable = false
@@ -196,7 +183,7 @@ function state_machine(state){
             // cliente=undefined
             nState = 5
         break;
-        case 5: //operation validation 
+        case 5: // Operation menu 
             dataEditable = false
             lat_data = false
             cancelable = false
@@ -241,8 +228,7 @@ function state_machine(state){
             }
 
             break;
-
-        case 6: //operation validation
+        case 6: // Operation validation
             dataEditable = false
             lat_data = false
             cancelable = false
@@ -260,8 +246,7 @@ function state_machine(state){
             }
             setTimeout(()=>state_machine(nState),500)
         break;
-
-        case 7:
+        case 7: // Operation information
             dataEditable = false
             lat_data = false
             cancelable = false
@@ -269,14 +254,14 @@ function state_machine(state){
             let movement = ""
             operation == 1 ? movement = "Your deposit" : movement = "Your withdrawal"
             message.textContent = ""
-            data1.textContent = `${movement}: ${input}`
+            data1.textContent = `${movement}: $${input}`
             data2.textContent = ""
-            data3.textContent = `New balance: ${cliente.saldo}`
+            data3.textContent = `New balance: $${cliente.saldo}`
             nState = 4
             setTimeout(()=>state_machine(nState),5000)
         break;
 
-        case 20: // wrong nip
+        case 20: // Wrong nip
             dataEditable = false
             lat_data = false
             cancelable = false
@@ -289,27 +274,26 @@ function state_machine(state){
             nState = 2
             setTimeout(()=>state_machine(nState),2000)
         break;
-        case 30: // error
+        case 30: // Error
             dataEditable = false
             lat_data = false
             cState = 30
             cancelable = false
             align2center()
-            message.textContent = "Error: no puedes tener mas de $990 ni menos de $10"
+            message.textContent = "Error: Your balance can't be either higher than $990 or lower than $10"
             data1.textContent = ""
             data2.textContent = "XXXX"
             data3.textContent = ""
             nState = 5 
             setTimeout(()=>state_machine(nState),3000)
         break;
-        case 40:
-            // bye bye!
+        case 40: // Log out
             dataEditable = false
             lat_data = false
             cancelable = false
             cState = 40
             align2center()
-            message.textContent = "Bye bye!"
+            message.textContent = "See you later!"
             data1.textContent = ""
             data2.textContent = ""
             data3.textContent = ""
